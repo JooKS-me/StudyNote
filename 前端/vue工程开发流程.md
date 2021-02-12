@@ -37,11 +37,14 @@ webpack安装：
 ```javascript
 import VueRouter from './router'
 import axios from "axios"
-import VueAxios from "vue-axios"
 
 //显示声明使用
 Vue.use(VueRouter);
-Vue.use(VueAxios, axios);
+Vue.prototype.$http= axios;
+
+
+//this.$http.post("http://localhost:8989/user/saveOrUpdate", this.form).then(res => {
+                            console.log(res.data);
 ```
 
 **5. 配置好router，创建router/index.js**

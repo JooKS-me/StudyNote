@@ -70,6 +70,23 @@
 
 单引号不会显示出$变量，啥都不带不能带空格。
 
+```shell
+#左侧开始截取
+${变量名:start:length} #第一个索引为0
+${变量名:start}
+
+#右侧开始截取
+${变量名:0-start:length} #第一个索引为1，0后面是杠
+${变量名:0-start}
+
+#从左侧开始查找字符串，找到后，截取这个字符串后面的所有字符串
+${变量名#*chars} #找第一个
+${变量名##*chars} #找最后一个
+#从右侧开始查找
+${变量名%chars*}
+${变量名%%chars*}
+```
+
 #### 自定义常量
 
 `readonly 变量名(=value)`
@@ -95,6 +112,36 @@
 - `$?`返回上一条语句的执行状态，0为正常，非0表示出错了
 
 - `$$`获取当前shell的pid，获取所有pid可以用`ps -aux`
+
+#### 索引数组
+
+- 定义
+
+  ```shell
+  array_name=(item1 item2 ...) #等号旁边不能有空格
+  array_name=([index1]=item1 [index2]=item2)
+  ```
+
+- 获取数组的数据
+
+  ```shell
+  ${array_name[索引下标]}
+  ${array_name[*]} #所有数据
+  ${array_name[@]} #所有数据
+  ```
+
+- 拼接
+
+  ```shell
+  array_newname=(${array_name1[*]} ${array_name2[*]})
+  ```
+
+- 数组的删除
+
+  ```shell
+  unset array_name[索引]
+  unset array_name #删掉整个数组
+  ```
 
 ## 循环
 
